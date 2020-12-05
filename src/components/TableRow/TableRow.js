@@ -2,6 +2,8 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
+import { numberFormatter } from '../../utils';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -111,7 +113,7 @@ const TableRow = ({
                 {
                     isHeader
                         ? renderHeaderTitle('Budget')
-                        : <h6>{ `${data.Budget} USD` }</h6>
+                        : <h6>{ `${ numberFormatter(data.Budget) } USD` }</h6>
                 }
             </Col>
         </Row>
