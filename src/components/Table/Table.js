@@ -4,8 +4,14 @@ import { useSelector } from 'react-redux';
 import TableRow from '../TableRow/TableRow';
 import { compaigns } from '../../mock/mock';
 
-const filterCompaigns = (compaigns, startDate, endDate) => {
-    return compaigns.filter(
+const filterCompaignsWithWrongPeriod = (compaigns) => compaigns.filter(
+    (el) => new Date(el.startDate) < new Date(el.endDate)
+);
+
+const filterCompaignsByDate = (compaigns, startDate, endDate) => {
+    const filteredComaings = filterCompaignsWithWrongPeriod(compaigns);
+
+    return filteredComaings.filter(
         (el) => {
             if (
                 startDate
@@ -60,7 +66,7 @@ const Table = () => {
         <div>
             { renderTableHeader() }
             { renderTableBody(
-                filterCompaigns(compaigns, startDate, endDate)
+                filterCompaignsByDate(compaigns, startDate, endDate)
             ) }
         </div>
     );
