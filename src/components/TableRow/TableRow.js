@@ -2,7 +2,24 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircle } from '@fortawesome/free-solid-svg-icons';
+
 import './TableRow.css';
+
+const checkIsActive = ({
+    startDate,
+    endDate,
+}) => {
+    const today = new Date('2017-12-12'); // TODO remove before PROD
+
+    return (
+        startDate
+        && endDate
+        && new Date(startDate) <= today
+        && new Date(endDate) >= today
+    );
+};
 
 const TableRow = ({
     isHeader,
@@ -47,6 +64,26 @@ const TableRow = ({
         </Row>
     );
 
+    const renderState = (data) => {
+        const isActive = checkIsActive(data);
+        const dotColor = isActive
+            ? "green"
+            : "red";
+        const stateText = isActive
+            ? "Active"
+            : "Inactive";
+
+        return (
+            <div className="state-cell">
+                <FontAwesomeIcon icon={ faCircle } color={ dotColor } size="sm"/>
+                <div className="margin-left">
+                    { stateText }
+                </div>
+            </div>
+        );
+
+    };
+
     const renderRightCols = () => (
         <Row style={{ height: '100%' }}>
             <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
@@ -67,7 +104,7 @@ const TableRow = ({
                 {
                     isHeader
                         ? renderHeaderTitle('Active')
-                        : <div>status</div>
+                        : renderState(data)
                 }
             </Col>
             <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>

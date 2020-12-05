@@ -9,8 +9,6 @@ const filterCompaignsWithWrongPeriod = (compaigns) => compaigns.filter(
 );
 
 const filterCompaignsBySearchText = (compaigns, searchText) => {
-    console.log('searchText: ', searchText);
-    console.log('compaigns: ', compaigns);
    return compaigns.filter((el) =>
         el.name
         && searchText

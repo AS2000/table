@@ -5,3 +5,14 @@
 .table-title {
     color: white;
 }
+
+.state-cell {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.margin-left {
+    margin-left: 10px;
+}

@@ -15,9 +15,6 @@ const Header = () => {
     const dispatch = useDispatch();
 
     const { startDate, endDate } = useSelector(state => state);
-    console.log('startDate: ', startDate);
-    console.log('endDate: ', endDate);
-
     const inputStyle = { backgroundColor: 'white', color:'black', textAlign: 'center' };
 
     const renderDateGroup = () => (
