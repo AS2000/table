@@ -34,7 +34,7 @@ const TableRow = ({
                 {
                     isHeader
                         ? renderHeaderTitle('Name')
-                        : <h6>{ `Compaign ${data.id}` }</h6>
+                        : <h6>{ data.name }</h6>
                 }
             </Col>
             <Col className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
@@ -88,7 +88,6 @@ const TableRow = ({
             <Col xs="7">
                 { renderRightCols() }
             </Col>
-            <div className="w-100"></div>
         </Row>
     );
 };

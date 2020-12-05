@@ -2,6 +2,7 @@ import {
     SET_USERS,
     SET_START_DATE,
     SET_END_DATE,
+    SET_SEARCH_TEXT,
 } from './constants';
 
 export function setUsers(payload) {
@@ -20,6 +21,13 @@ export function setStartDate(payload) {
 export function setEndDate(payload) {
     return {
         type: SET_END_DATE,
+        payload,
+    };
+};
+
+export function setSearchText(payload) {
+    return {
+        type: SET_SEARCH_TEXT,
         payload,
     };
 };

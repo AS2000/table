@@ -2,6 +2,7 @@ import {
     SET_USERS,
     SET_START_DATE,
     SET_END_DATE,
+    SET_SEARCH_TEXT,
 } from './constants';
 
 const initialState = {
@@ -16,6 +17,8 @@ function rootReducer(state = initialState, action) {
             return { ...state, startDate: action.payload};
         case SET_END_DATE:
             return { ...state, endDate: action.payload};
+        case SET_SEARCH_TEXT:
+            return { ...state, searchText: action.payload};
         default:
             return state;
     };

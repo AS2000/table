@@ -8,10 +8,23 @@ const filterCompaignsWithWrongPeriod = (compaigns) => compaigns.filter(
     (el) => new Date(el.startDate) < new Date(el.endDate)
 );
 
-const filterCompaignsByDate = (compaigns, startDate, endDate) => {
-    const filteredComaings = filterCompaignsWithWrongPeriod(compaigns);
+const filterCompaignsBySearchText = (compaigns, searchText) => {
+    console.log('searchText: ', searchText);
+    console.log('compaigns: ', compaigns);
+   return compaigns.filter((el) =>
+        el.name
+        && searchText
+        && el.name.toLowerCase().includes( searchText.toLowerCase())
+    );
+};
 
-    return filteredComaings.filter(
+const filterCompaignsByDate = ({ compaigns, startDate, endDate, searchText }) => {
+    const filteredComaings = filterCompaignsWithWrongPeriod(compaigns);
+    const filteredComaingsBySearch = searchText
+        ? filterCompaignsBySearchText(filteredComaings, searchText)
+        : filteredComaings;
+
+    return filteredComaingsBySearch.filter(
         (el) => {
             if (
                 startDate
@@ -51,7 +64,11 @@ const filterCompaignsByDate = (compaigns, startDate, endDate) => {
 };
 
 const Table = () => {
-    const { startDate, endDate } = useSelector(state => state);
+    const {
+        startDate,
+        endDate,
+        searchText,
+     } = useSelector(state => state);
 
     const renderTableHeader = () => (
              <TableRow isHeader />
@@ -66,7 +83,7 @@ const Table = () => {
         <div>
             { renderTableHeader() }
             { renderTableBody(
-                filterCompaignsByDate(compaigns, startDate, endDate)
+                filterCompaignsByDate({ compaigns, startDate, endDate, searchText })
             ) }
         </div>
     );

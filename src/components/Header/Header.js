@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setStartDate, setEndDate } from '../../redux/actions';
+import {
+    setStartDate,
+    setEndDate,
+    setSearchText,
+ } from '../../redux/actions';
 import { Form, FormGroup, Label, InputGroup, Input, FormText, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -44,6 +48,7 @@ const Header = () => {
             <Input
                 style={ inputStyle }
                 placeholder="Search by name"
+                onChange={ date=> dispatch(setSearchText(date.target.value)) }
             />
             <InputGroupAddon addonType="append">
                 <InputGroupText>
