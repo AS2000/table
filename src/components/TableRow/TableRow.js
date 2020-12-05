@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
 import './TableRow.css';
@@ -7,6 +8,8 @@ const TableRow = ({
     isHeader,
     data = [],
 }) => {
+    const users = useSelector(state => state.users);
+
     const renderHeaderTitle = (text) => (
         <div className="table-title">
             <h6>
@@ -15,9 +18,19 @@ const TableRow = ({
         </div>
     );
 
+    const renderName = (nameId) => {
+        const userName = users && users.find((el) => el.id === nameId);
+
+        return (
+            userName
+                ? userName.name
+                : <div>Unknown User</div>
+        )
+    };
+
     const renderLeftCols = () => (
-        <Row>
-            <Col className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+        <Row style={{ height: '100%' }}>
+            <Col className="border" style={ isHeader && {backgroundColor: '#4472c4'}}>
                 {
                     isHeader
                         ? renderHeaderTitle('Name')
@@ -28,36 +41,36 @@ const TableRow = ({
                 {
                     isHeader
                         ? renderHeaderTitle('User Name')
-                        : <h6>{ `Name` }</h6>
+                        : renderName(data.userId)
                 }
             </Col>
         </Row>
     );
 
     const renderRightCols = () => (
-        <Row>
-            <Col className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+        <Row style={{ height: '100%' }}>
+            <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
                 {
                     isHeader
                         ? renderHeaderTitle('Start Date')
                         : <h6>{ data.startDate }</h6>
                 }
             </Col>
-            <Col className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
-            {
-                    isHeader
-                        ? renderHeaderTitle('End Date')
-                        : <h6>{ data.endDate }</h6>
-            }
+            <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+                {
+                        isHeader
+                            ? renderHeaderTitle('End Date')
+                            : <h6>{ data.endDate }</h6>
+                }
             </Col>
-            <Col className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+            <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
                 {
                     isHeader
                         ? renderHeaderTitle('Active')
                         : <div>status</div>
                 }
             </Col>
-            <Col className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+            <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
                 {
                     isHeader
                         ? renderHeaderTitle('Budget')
@@ -75,6 +88,7 @@ const TableRow = ({
             <Col xs="7">
                 { renderRightCols() }
             </Col>
+            <div className="w-100"></div>
         </Row>
     );
 };
