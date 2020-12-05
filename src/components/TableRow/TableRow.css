@@ -1,3 +1,7 @@
-.Row {
-    width: 100%;
+.table-header {
+    background-color: #4472c4;
+}
+
+.table-title {
+    color: white;
 }
