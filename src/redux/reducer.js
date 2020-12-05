@@ -1,14 +1,24 @@
-import { SET_USERS } from './constants';
+import {
+    SET_USERS,
+    SET_START_DATE,
+    SET_END_DATE,
+} from './constants';
 
 const initialState = {
     users: [],
 };
 
 function rootReducer(state = initialState, action) {
-    if (action.type === SET_USERS) {
-        return { users: [...action.payload]};
-    }
-    return state;
-}
+    switch(action.type) {
+        case SET_USERS:
+            return { users: [...action.payload]};
+        case SET_START_DATE:
+            return { ...state, startDate: action.payload};
+        case SET_END_DATE:
+            return { ...state, endDate: action.payload};
+        default:
+            return state;
+    };
+};
 
 export default rootReducer;

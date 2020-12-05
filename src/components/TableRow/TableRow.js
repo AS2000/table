@@ -24,7 +24,7 @@ const TableRow = ({
         return (
             userName
                 ? userName.name
-                : <div>Unknown User</div>
+                : <h6>Unknown User</h6>
         )
     };
 
