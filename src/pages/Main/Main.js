@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { setUsers, addNewCampaigns } from '../../redux/actions';
-import { Container } from 'reactstrap';
+import { Container, Spinner } from 'reactstrap';
 
 import { getUsers } from '../../api/api';
 
@@ -13,15 +13,21 @@ import './Main.css';
 
 const Main = () => {
     const dispatch = useDispatch();
+    const [isFetching, setIsFetching] = React.useState(false);
 
     React.useEffect(()=> {
+        setIsFetching(true);
+
         getUsers()
-            .then( response =>
+            .then( (response) => {
+                setIsFetching(false);
                 dispatch(setUsers(response.data))
-            )
-            .catch ( error =>
-                console.error(error)
-            );
+            })
+            .catch ( (error) =>
+            {
+                setIsFetching(false);
+                console.error(error);
+            });
         },[]
     );
 
@@ -31,11 +37,27 @@ const Main = () => {
         },[]
     );
 
+    const renderSpinner = () => {
+        if (!isFetching) return null;
+
+        return (
+            <div className="spinner">
+                <Spinner color="info" />
+            </div>
+        );
+    };
+
     return (
         <div className="main-page">
             <Container>
-                <Header />
-                <Table />
+                { renderSpinner() }
+                {
+                    !isFetching && (
+                        <React.Fragment>
+                            <Header />
+                            <Table />
+                        </React.Fragment>
+                )}
             </Container>
         </div>
     );
