@@ -10,22 +10,22 @@ export const numberFormatter = (num) => {
         : Math.sign(num)*Math.abs(num);
 };
 
-export const filterCompaignsWithWrongPeriod = (compaigns) => compaigns.filter(
+export const filterCampaignsWithWrongPeriod = (campaigns) => campaigns.filter(
     (el) => new Date(el.startDate) < new Date(el.endDate)
 );
 
-export const filterCompaignsBySearchText = (compaigns, searchText) => {
-   return compaigns.filter((el) =>
+export const filterCampaignsBySearchText = (campaigns, searchText) => {
+   return campaigns.filter((el) =>
         el.name
         && searchText
         && el.name.toLowerCase().includes( searchText.toLowerCase())
     );
 };
 
-export const filterCompaignsByDate = ({ compaigns, startDate, endDate, searchText }) => {
-    const filteredComaings = filterCompaignsWithWrongPeriod(compaigns);
+export const filterCampaignsByDate = ({ campaigns, startDate, endDate, searchText }) => {
+    const filteredComaings = filterCampaignsWithWrongPeriod(campaigns);
     const filteredComaingsBySearch = searchText
-        ? filterCompaignsBySearchText(filteredComaings, searchText)
+        ? filterCampaignsBySearchText(filteredComaings, searchText)
         : filteredComaings;
 
     return filteredComaingsBySearch.filter(

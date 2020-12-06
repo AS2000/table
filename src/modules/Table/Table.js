@@ -1,23 +1,24 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 
-import { filterCompaignsByDate } from '../../utils';
+import { filterCampaignsByDate } from '../../utils';
 
 import TableRow from '../../components/TableRow/TableRow';
-import { compaigns } from '../../mock/mock';
+
 
 const Table = () => {
     const {
         startDate,
         endDate,
         searchText,
+        campaigns,
      } = useSelector(state => state);
 
     const renderTableHeader = () => (
         <TableRow isHeader />
     );
 
-    const renderTableBody = (compaigns) => compaigns.map(
+    const renderTableBody = (campaigns) => campaigns.map(
         (el, index) =>
             <TableRow data={el} key={`row-${index}`} />
     );
@@ -26,7 +27,7 @@ const Table = () => {
         <React.Fragment>
             { renderTableHeader() }
             { renderTableBody(
-                filterCompaignsByDate({ compaigns, startDate, endDate, searchText })
+                filterCampaignsByDate({ campaigns, startDate, endDate, searchText })
             ) }
         </React.Fragment>
     );

@@ -2,7 +2,7 @@ export const USD = 'USD';
 
 export const TABLE_TITLE_BACKGROUND_COLOR = '#4472c4';
 
-export const COMPAIGN_STATE = {
+export const CAMPAIGN_STATE = {
     active: {
         color: "green",
         label: "Active",

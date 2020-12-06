@@ -6,7 +6,7 @@ import { numberFormatter } from '../../utils';
 import {
     USD,
     TABLE_TITLE_BACKGROUND_COLOR,
-    COMPAIGN_STATE,
+    CAMPAIGN_STATE,
  } from '../../constants';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -88,11 +88,11 @@ const TableRow = ({
     const renderState = (data) => {
         const isActive = checkIsActive(data);
         const dotColor = isActive
-            ? COMPAIGN_STATE.active.color
-            : COMPAIGN_STATE.inactive.color;
+            ? CAMPAIGN_STATE.active.color
+            : CAMPAIGN_STATE.inactive.color;
         const stateText = isActive
-            ? COMPAIGN_STATE.active.label
-            : COMPAIGN_STATE.inactive.label;
+            ? CAMPAIGN_STATE.active.label
+            : CAMPAIGN_STATE.inactive.label;
 
         return (
             <div className="state-cell">
