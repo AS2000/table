@@ -3,6 +3,5 @@ import App from './App';
 
 test('renders App component', () => {
   render(<App />);
-  screen.debug();
-  expect(screen.getByText(/User Name/)).toBeInTheDocument();
+  expect(screen.getByRole('status')).toBeInTheDocument();
 });

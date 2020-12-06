@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
-import { numberFormatter } from '../../utils';
+import { numberFormatter } from '../../utils/utils';
 import {
     USD,
     TABLE_TITLE_BACKGROUND_COLOR,

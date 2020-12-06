@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useSelector } from 'react-redux';
 
-import { filterCampaignsByDate } from '../../utils';
+import { filterCampaignsByDate } from '../../utils/utils';
 
 import TableRow from '../../components/TableRow/TableRow';
 
