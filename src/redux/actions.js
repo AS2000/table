@@ -3,7 +3,7 @@ import {
     SET_START_DATE,
     SET_END_DATE,
     SET_SEARCH_TEXT,
-    ADD_CAMPAIGNS,
+    ADD_NEW_CAMPAIGNS,
 } from './constants';
 
 export function setUsers(payload) {
@@ -33,9 +33,9 @@ export function setSearchText(payload) {
     };
 };
 
-export function addCampaigns(payload) {
+export function addNewCampaigns(payload) {
     return {
-        type: ADD_CAMPAIGNS,
+        type: ADD_NEW_CAMPAIGNS,
         payload,
     };
 };
