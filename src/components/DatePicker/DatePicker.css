@@ -1,12 +1,7 @@
-.table-title {
-    color: white;
-}
-
-.state-cell {
+.date-picker {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
 }
 
 .margin-left {

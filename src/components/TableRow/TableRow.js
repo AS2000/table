@@ -3,6 +3,11 @@ import { useSelector } from 'react-redux';
 import { Row, Col } from 'reactstrap';
 
 import { numberFormatter } from '../../utils';
+import {
+    USD,
+    TABLE_TITLE_BACKGROUND_COLOR,
+    COMPAIGN_STATE,
+ } from '../../constants';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
@@ -28,9 +33,19 @@ const TableRow = ({
     data = [],
 }) => {
     const users = useSelector(state => state.users);
+    const titleCellStyle = {
+        backgroundColor: TABLE_TITLE_BACKGROUND_COLOR,
+        border: "solid 1px",
+        borderColor: 'white',
+    };
+    const rowStyle = {
+        height: '100%',
+        minHeight: '35px',
+        alignItems: 'center',
+    };
 
-    const renderHeaderTitle = (text) => (
-        <div className="table-title">
+    const renderCell = (text) => (
+        <div className={ isHeader && "table-title" } >
             <h6>
                 { text }
             </h6>
@@ -43,24 +58,28 @@ const TableRow = ({
         return (
             userName
                 ? userName.name
-                : <h6>Unknown User</h6>
+                : 'Unknown User'
         )
     };
 
     const renderLeftCols = () => (
-        <Row style={{ height: '100%' }}>
-            <Col className="border" style={ isHeader && {backgroundColor: '#4472c4'}}>
+        <Row style={ rowStyle }>
+            <Col xs="6" style={ isHeader && titleCellStyle}>
                 {
-                    isHeader
-                        ? renderHeaderTitle('Name')
-                        : <h6>{ data.name }</h6>
+                    renderCell(
+                        isHeader
+                            ? 'Name'
+                            : data.name
+                    )
                 }
             </Col>
-            <Col className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+            <Col xs="6" style={isHeader && titleCellStyle}>
                 {
-                    isHeader
-                        ? renderHeaderTitle('User Name')
-                        : renderName(data.userId)
+                    renderCell(
+                        isHeader
+                            ? 'User Name'
+                            : renderName(data.userId)
+                    )
                 }
             </Col>
         </Row>
@@ -69,11 +88,11 @@ const TableRow = ({
     const renderState = (data) => {
         const isActive = checkIsActive(data);
         const dotColor = isActive
-            ? "green"
-            : "red";
+            ? COMPAIGN_STATE.active.color
+            : COMPAIGN_STATE.inactive.color;
         const stateText = isActive
-            ? "Active"
-            : "Inactive";
+            ? COMPAIGN_STATE.active.label
+            : COMPAIGN_STATE.inactive.label;
 
         return (
             <div className="state-cell">
@@ -83,37 +102,42 @@ const TableRow = ({
                 </div>
             </div>
         );
-
     };
 
     const renderRightCols = () => (
-        <Row style={{ height: '100%' }}>
-            <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+        <Row style={ rowStyle }>
+            <Col xs="3" style={isHeader && titleCellStyle}>
                 {
-                    isHeader
-                        ? renderHeaderTitle('Start Date')
-                        : <h6>{ data.startDate }</h6>
-                }
-            </Col>
-            <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
-                {
+                    renderCell(
                         isHeader
-                            ? renderHeaderTitle('End Date')
-                            : <h6>{ data.endDate }</h6>
+                            ? 'Start Date'
+                            : data.startDate
+                    )
                 }
             </Col>
-            <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+            <Col xs="3" style={isHeader && titleCellStyle}>
+                {
+                    renderCell(
+                        isHeader
+                        ? 'End Date'
+                        : data.endDate
+                    )
+                }
+            </Col>
+            <Col xs="3" style={isHeader && titleCellStyle}>
                 {
                     isHeader
-                        ? renderHeaderTitle('Active')
+                        ? renderCell('Active')
                         : renderState(data)
                 }
             </Col>
-            <Col xs="3" className="border" style={isHeader && {backgroundColor: '#4472c4'}}>
+            <Col xs="3" style={isHeader && titleCellStyle}>
                 {
-                    isHeader
-                        ? renderHeaderTitle('Budget')
-                        : <h6>{ `${ numberFormatter(data.Budget) } USD` }</h6>
+                    renderCell(
+                        isHeader
+                            ? 'Budget'
+                            : `${ numberFormatter(data.Budget) } ${USD}`
+                    )
                 }
             </Col>
         </Row>

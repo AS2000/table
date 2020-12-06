@@ -4,8 +4,10 @@ import { setUsers } from '../../redux/actions';
 import axios from 'axios';
 import { Container } from 'reactstrap';
 
-import Header from '../../components/Header/Header';
-import Table from '../../components/Table/Table';
+import Header from '../../modules/Header/Header';
+import Table from '../../modules/Table/Table';
+
+import './Main.css';
 
 const Main = () => {
     const dispatch = useDispatch();
@@ -21,7 +23,7 @@ const Main = () => {
     );
 
     return (
-        <div>
+        <div className="main-page">
             <Container>
                 <Header />
                 <Table />
