@@ -22,7 +22,7 @@
 
 ### Tests: Component / Funcion
 
-# To Started the Application
+# To Start the Application
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
