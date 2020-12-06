@@ -18,7 +18,7 @@ const checkIsActive = ({
     startDate,
     endDate,
 }) => {
-    const today = new Date('2017-12-12'); // TODO remove before PROD
+    const today = new Date();
 
     return (
         startDate
