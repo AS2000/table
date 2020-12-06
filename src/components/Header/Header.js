@@ -5,7 +5,7 @@ import {
     setEndDate,
     setSearchText,
  } from '../../redux/actions';
-import { Form, FormGroup, Label, InputGroup, Input, FormText, InputGroupAddon, InputGroupText } from 'reactstrap';
+import {  InputGroup, Input, InputGroupAddon, InputGroupText } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,18 +23,20 @@ const Header = () => {
                 type="date"
                 name="date"
                 varibale={ startDate }
-                onChange={ date=> dispatch(setStartDate(date.target.value)) }
+                onChange={ (date) => dispatch(setStartDate(date.target.value)) }
                 placeholder="Start-Date"
                 style={ inputStyle }
+                max={ endDate }
             />
             <div className="margin-left">
                 <Input
                     type="date"
                     name="date"
                     varibale={ endDate }
-                    onChange={ date=> dispatch(setEndDate(date.target.value)) }
+                    onChange={ (date) => dispatch(setEndDate(date.target.value)) }
                     placeholder="End-Date"
                     style={ inputStyle }
+                    min={ startDate }
                 />
             </div>
         </div>
