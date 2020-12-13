@@ -2,12 +2,13 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 import { setUsers, addNewCampaigns } from '../../redux/actions';
-import { Container, Spinner } from 'reactstrap';
+import { Container } from 'reactstrap';
 
 import { getUsers } from '../../api/api';
 
 import Header from '../../modules/Header/Header';
 import Table from '../../modules/Table/Table';
+import Spinner from '../../components/Spinner/Spinner';
 
 import './Main.css';
 
@@ -37,20 +38,12 @@ const Main = () => {
         },[]
     );
 
-    const renderSpinner = () => {
-        if (!isFetching) return null;
-
-        return (
-            <div className="spinner">
-                <Spinner color="info" />
-            </div>
-        );
-    };
-
     return (
         <div className="main-page">
             <Container>
-                { renderSpinner() }
+                <Spinner
+                    isLoading={ isFetching }
+                />
                 {
                     !isFetching && (
                         <React.Fragment>

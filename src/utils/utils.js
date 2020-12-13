@@ -10,7 +10,7 @@ export const numberFormatter = (num) => {
         : Math.sign(num)*Math.abs(num);
 };
 
-export const filterCampaignsWithWrongPeriod = (campaigns) => campaigns.filter(
+export const filterCampaignsWithWrongPeriod = (campaigns) => campaigns && campaigns.filter(
     (el) => new Date(el.startDate) < new Date(el.endDate)
 );
 
@@ -23,9 +23,9 @@ export const filterCampaignsBySearchText = (campaigns, searchText) => {
 };
 
 export const filterCampaignsByDate = ({ campaigns, startDate, endDate, searchText }) => {
-    const filteredComaings = filterCampaignsWithWrongPeriod(campaigns);
+    const filteredComaings = filterCampaignsWithWrongPeriod(campaigns) || [];
     const filteredComaingsBySearch = searchText
-        ? filterCampaignsBySearchText(filteredComaings, searchText)
+        ? filterCampaignsBySearchText(filteredComaings, searchText) || []
         : filteredComaings;
 
     return filteredComaingsBySearch.filter(
